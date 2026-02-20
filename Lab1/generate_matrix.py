@@ -9,7 +9,7 @@ def generate_matrix():
         A = np.random.randint(-21 ,210, size=(n, n))
         B = np.random.randint(-21 ,210,  size=(n, n))
 
-        with open(f"input.txt", "a") as f:
+        with open(f"new.txt", "a") as f:
             f.write(f"{n}\n")
             for i in range(n):
                 f.write(" ".join(str(x) for x in A[i]) + "\n")
@@ -20,5 +20,5 @@ def generate_matrix():
 
 
 if __name__ == "__main__":
-    open(f"input.txt", "w")
+    open(f"new.txt", "w")
     generate_matrix()
