@@ -33,7 +33,8 @@ vector<vector<double>> Multiply_Matrix(const vector<vector<double>>& A,
         }
     }
     return result;
-} ```
+}
+```
 
 
 ## Методика проведения экспериментов
