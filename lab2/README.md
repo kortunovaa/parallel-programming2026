@@ -14,6 +14,7 @@
 ## Реализация
 
 В программу из лабораторной работы №1 были добавлены директивы OpenMP для распараллеливания вычислений:
+```cpp
 vector<vector<double>> Multiply_Matrix(const vector<vector<double>>& A,
     const vector<vector<double>>& B,
     int num_threads) {
@@ -22,7 +23,7 @@ vector<vector<double>> Multiply_Matrix(const vector<vector<double>>& A,
     vector<vector<double>> result(n, vector<double>(n, 0));
 
     omp_set_num_threads(num_threads);  // установка количества потоков
-```cpp
+
 #pragma omp parallel for schedule(dynamic)  // распараллеливание цикла
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
@@ -32,7 +33,7 @@ vector<vector<double>> Multiply_Matrix(const vector<vector<double>>& A,
         }
     }
     return result;
-} ```cpp
+} 
 
 
 ## Методика проведения экспериментов
