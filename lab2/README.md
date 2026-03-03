@@ -32,7 +32,7 @@ vector<vector<double>> Multiply_Matrix(const vector<vector<double>>& A,
         }
     }
     return result;
-}
+}```
 
 ## Методика проведения экспериментов
 1)Генерация матриц: Python-скрипт generate_matrix.py создает матрицы размеров 200, 400, 800, 1200, 1600, 2000
