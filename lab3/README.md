@@ -41,6 +41,7 @@ int main(int argc, char* argv[]) {
     MPI_Finalize();
     return 0;
 }
+```cpp
 
 ## Методика проведения экспериментов
 1. Генерация матриц: Python-скрипт generate_matrix.py создает матрицы размеров 200, 400, 800, 1200, 1600, 2000
