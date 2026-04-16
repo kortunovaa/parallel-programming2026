@@ -1,0 +1,52 @@
+cat > run_complete.slurm << 'EOF'
+#!/bin/bash
+#SBATCH --job-name=lab2_complete
+#SBATCH --time=04:00:00
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=8
+#SBATCH --mem-per-cpu=4gb
+#SBATCH --partition=common
+#SBATCH --output=lab2_output_%j.out
+#SBATCH --error=lab2_error_%j.out
+
+module load intel/mpi4
+
+cd /home/2024-01247/lab3
+
+echo "=========================================="
+echo "Laboratory Work #2 - Matrix Multiplication"
+echo "Start time: $(date)"
+echo "=========================================="
+
+# Список размеров матриц
+sizes=(200 400 800 1200 1600 2000)
+# Количество процессов
+processes=(1 2 4 8)
+# Количество повторений
+repeats=3
+
+total=$(( ${#sizes[@]} * ${#processes[@]} * repeats ))
+current=0
+
+for size in "${sizes[@]}"; do
+    for proc in "${processes[@]}"; do
+        for rep in $(seq 1 $repeats); do
+            current=$((current + 1))
+            echo "[$current/$total] Running: size=$size, processes=$proc, repeat=$rep"
+            mpirun -np $proc ./laba2_mpi $size $proc $rep
+            sleep 2
+        done
+    done
+done
+
+echo "=========================================="
+echo "End time: $(date)"
+echo "Results saved in experiments_mpi.csv"
+echo "=========================================="
+
+# Создать таблицу результатов
+python3 create_table.py
+
+echo "Table created: results_table.txt"
+cat results_table.txt
+EOF
